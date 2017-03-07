@@ -28,22 +28,28 @@
 #include <Eigen/Core>
 
 #include <ze/common/logging.hpp>
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+// The yaml-cpp version in yaml_cpp_catkin uses auto_ptr which is deprecated.
 #include <yaml-cpp/yaml.h>
+#pragma diagnostic pop
 
 namespace YAML {
 
 template <typename T>
 T extractChild(const YAML::Node& node, const std::string& key)
 {
+  // NOTE: Mark() is only available from 0.5.3
   if (!node.IsMap())
   {
-    throw YAML::Exception(node.Mark(), "Node is not a map");
+//    throw YAML::Exception(node.Mark(), "Node is not a map");
+    throw std::runtime_error("Node is not a map");
   }
 
   const YAML::Node child = node[key];
   if (!child)
   {
-    throw YAML::Exception(node.Mark(), "key '" + key + "' does not exist");
+//    throw YAML::Exception(node.Mark(), "key '" + key + "' does not exist");
+    throw std::runtime_error("key '" + key + "' does not exist");
   }
 
   return child.as<T>();
