@@ -34,8 +34,17 @@ class Publisher;
 class NodeHandle;
 }
 
+namespace image_transport {
+class ImageTransport;
+class Publisher;
+}
+
 namespace tf {
 class TransformBroadcaster;
+}
+
+namespace cv {
+class Mat;
 }
 
 namespace ze {
@@ -108,10 +117,17 @@ public:
       const Color& color,
       const real_t size = 0.02) override;
 
+  // images
+  void publishImage(const cv::Mat& img);
+
 private:
   std::shared_ptr<ros::NodeHandle> nh_;
   std::shared_ptr<ros::Publisher> pub_marker_;
   std::shared_ptr<tf::TransformBroadcaster> tf_broadcaster_;
+
+  std::shared_ptr<image_transport::ImageTransport> it_;
+  std::shared_ptr<image_transport::Publisher> pub_img_;
+
   std::string world_frame = "map";    //!< World-frame
   double viz_scale_ = 1.0;            //!< Scale marker size
 };

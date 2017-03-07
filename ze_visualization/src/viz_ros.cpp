@@ -29,6 +29,8 @@
 #include <tf/transform_broadcaster.h>
 #include <visualization_msgs/Marker.h>
 #include <visualization_msgs/MarkerArray.h>
+#include <image_transport/image_transport.h>
+#include <cv_bridge/cv_bridge.h>
 
 #include <ze/ros/tf_bridge.hpp>
 #include <ze/visualization/viz_ros_utils.hpp>
@@ -49,6 +51,9 @@ VisualizerRos::VisualizerRos()
   nh_.reset(new ros::NodeHandle("~"));
   pub_marker_.reset(new ros::Publisher(nh_->advertise<visualization_msgs::Marker>("markers", 100)));
   tf_broadcaster_.reset(new tf::TransformBroadcaster());
+
+  it_.reset(new image_transport::ImageTransport(*nh_));
+  pub_img_.reset(new image_transport::Publisher(it_->advertise("ftr_img", 1)));
 }
 
 VisualizerRos::VisualizerRos(const std::string& frame)
@@ -288,6 +293,16 @@ void VisualizerRos::drawTrajectory(
     m.points.push_back(getRosPoint(points[i]));
   }
   pub_marker_->publish(m);
+}
+
+void VisualizerRos::publishImage(const cv::Mat& img)
+{
+  CHECK(!img.empty());
+  CHECK_EQ(img.type(), CV_8UC1);
+  std_msgs::Header header;
+  header.stamp = ros::Time::now();
+  sensor_msgs::ImagePtr msg = cv_bridge::CvImage(header, "mono8", img).toImageMsg();
+  pub_img_->publish(msg);
 }
 
 } // namespace ze
