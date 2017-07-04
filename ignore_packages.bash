@@ -11,3 +11,6 @@ touch imp_app_pangolin_example/CATKIN_IGNORE
 
 # rely on cuda dependent packages
 touch imp_tools_cmd/CATKIN_IGNORE
+
+# rely on specific messages
+touch ze_data_provider/CATKIN_IGNORE
