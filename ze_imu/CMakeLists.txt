@@ -13,6 +13,7 @@ catkin_python_setup()
 #############
 # LIBRARIES #
 #############
+include(ze_options)
 set(HEADERS
   include/ze/imu/imu_model.hpp
   include/ze/imu/imu_rig.hpp
@@ -37,6 +38,7 @@ set(SOURCES
   )
 
 cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+target_link_libraries(${PROJECT_NAME} yaml-cpp)
 
 ##########
 # GTESTS #
