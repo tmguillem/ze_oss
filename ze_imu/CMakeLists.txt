@@ -13,6 +13,7 @@ catkin_python_setup()
 #############
 # LIBRARIES #
 #############
+include(ze_options)
 set(HEADERS
   include/ze/imu/imu_model.hpp
   include/ze/imu/imu_rig.hpp
