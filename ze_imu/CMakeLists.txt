@@ -37,6 +37,7 @@ set(SOURCES
   )
 
 cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+target_link_libraries(${PROJECT_NAME} yaml-cpp)
 
 ##########
 # GTESTS #
