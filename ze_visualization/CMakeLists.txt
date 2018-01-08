@@ -4,6 +4,10 @@ project(ze_visualization)
 find_package(catkin_simple REQUIRED)
 catkin_simple(ALL_DEPS_REQUIRED)
 
+find_package(OpenCV REQUIRED core highgui imgproc calib3d)
+list(APPEND catkin_LIBRARIES ${OpenCV_LIBS})
+list(APPEND catkin_INCLUDE_DIRS ${OpenCV_INCLUDE_DIRS})
+
 include(ze_setup)
 
 #############

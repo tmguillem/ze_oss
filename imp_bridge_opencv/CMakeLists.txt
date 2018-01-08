@@ -12,6 +12,7 @@ include(ze_setup)
 
 find_package(OpenCV REQUIRED core highgui imgproc calib3d)
 list(APPEND catkin_LIBRARIES ${OpenCV_LIBS})
+list(APPEND catkin_INCLUDE_DIRS ${OpenCV_INCLUDE_DIRS})
 
 set(HEADERS
   include/imp/bridge/opencv/cv_connector_pixel_types.hpp
