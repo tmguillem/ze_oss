@@ -83,6 +83,8 @@ ZE_MAKE_EIGEN_MATRIX_TYPEDEFS(7,7);
 ZE_MAKE_EIGEN_MATRIX_TYPEDEFS(8,8);
 ZE_MAKE_EIGEN_MATRIX_TYPEDEFS(9,9);
 
+#undef ZE_MAKE_EIGEN_MATRIX_TYPEDEFS
+
 // Typedef arbitary length vector and arbitrary sized matrix.
 using VectorX = Eigen::Matrix<real_t, Eigen::Dynamic, 1>;
 using MatrixX = Eigen::Matrix<real_t, Eigen::Dynamic, Eigen::Dynamic>;
