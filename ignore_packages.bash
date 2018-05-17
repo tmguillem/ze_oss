@@ -14,3 +14,7 @@ touch imp_tools_cmd/CATKIN_IGNORE
 
 # rely on specific messages
 touch ze_data_provider/CATKIN_IGNORE
+
+# misc
+touch ze_pangolin/CATKIN_IGNORE
+touch imp_bridge_pangolin/CATKIN_IGNORE

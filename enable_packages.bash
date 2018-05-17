@@ -14,3 +14,7 @@ rm imp_tools_cmd/CATKIN_IGNORE
 
 # rely on specific messages
 rm ze_data_provider/CATKIN_IGNORE
+
+# misc
+rm ze_pangolin/CATKIN_IGNORE
+rm imp_bridge_pangolin/CATKIN_IGNORE
